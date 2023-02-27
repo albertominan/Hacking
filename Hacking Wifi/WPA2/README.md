@@ -74,19 +74,52 @@ En este caso he usado el diccionario Rockyou que viene preinstalado en kali linu
 
 # How To
 
-![](Imagen1.png)
+Listando versión del sistema
 
 ![](Imagen1.png)
+
+Listando interfaces
+
 ![](Imagen2.png)
+
+Matando procesos para evitar conflictos y activamos el modo monitor
+
 ![](Imagen3.png)
+
+Ponemos a capturar las redes disponibles
+
 ![](Imagen4.png)
+
+Una vez elegido nuestro objetivo empezamos a esnifar paquetes
+
 ![](Imagen5.png)
 ![](Imagen6.png)
+
+A la espera de que se conecte un cliente para deautenticarlo y capturar el handshake
+
 ![](Imagen7.png)
+
+Empezamos el ataque deauth para forzar el handshake
+
 ![](Imagen8.png)
+
+Se produce el handshake….
+
 ![](Imagen9.png)
+
+Comprobamos que efectivamente nos da los datos de la clave WPA
+
 ![](Imagen10.png)
+
+Paramos la red wlan0 para deshabilitar el modo monitor
+
 ![](Imagen11.png)
+
+Comenzamos el crackeo de la clave WPA de nuestra captura de wireshark usando el diccionario rockyou.txt
+
 ![](Imagen12.png)
+
+Y como podemos ver nuestro ataque ha tenido éxito, la contraseña se encontraba en la posición 331 de la lista
+
 ![](Imagen13.png)
 
