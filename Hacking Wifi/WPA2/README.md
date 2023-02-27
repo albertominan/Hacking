@@ -76,3 +76,17 @@ En este caso he usado el diccionario Rockyou que viene preinstalado en kali linu
 
 ![](Imagen1.png)
 
+![](Imagen1.png)
+![](Imagen2.png)
+![](Imagen3.png)
+![](Imagen4.png)
+![](Imagen5.png)
+![](Imagen6.png)
+![](Imagen7.png)
+![](Imagen8.png)
+![](Imagen9.png)
+![](Imagen10.png)
+![](Imagen11.png)
+![](Imagen12.png)
+![](Imagen13.png)
+
