@@ -5,7 +5,7 @@
 
 ### WiFi Passwords
 
-  ![](mafia_color.gif)
+  ![]()
   
 ## Requisitos
 
@@ -13,7 +13,7 @@ Antes de nada, deberíamos de instalar los drivers necesarios de la antena ya qu
 En este caso he usado el diccionario Rockyou que viene preinstalado en kali linux.
 
 
-
+  ![](Alfa-AWUS036AC.png)
 
 # How To
 
