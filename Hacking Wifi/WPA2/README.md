@@ -15,8 +15,6 @@ En este caso he usado el diccionario Rockyou que viene preinstalado en kali linu
 
   ![](Alfa-AWUS036AC.png)
 
-# How To
-
 
 
 ## Comandos Utilizados:
@@ -73,6 +71,8 @@ En este caso he usado el diccionario Rockyou que viene preinstalado en kali linu
    
        sudo aircrack-ng capture1-01.cap -w /usr/share/wordlists/rockyou.txt
 
+
+# How To
 
 ![](Imagen1.png)
 
