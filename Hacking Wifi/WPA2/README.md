@@ -21,11 +21,23 @@ En este caso he usado el diccionario Rockyou que viene preinstalado en kali linu
 
 ## Comandos Utilizados:
     
-   Ver versión del sistema: 
-        ``cat /etc/os-release``
+   Ver versión del sistema:
+        
+       cat /etc/os-release
+       
+       uname -a
    
+   Ver interfaces:
    
+       iwconfig
    
+   Matar procesos:
+    
+       sudo airmon-ng check kill
+
+   Iniciar modo monitor:
+   
+       sudo airmon-ng start wlan0
    
 ![](Imagen1.png)
 
