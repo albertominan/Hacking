@@ -2,7 +2,7 @@
     
   
 
-  ![](2023-02-25_141510.png)
+  ![](portada.png)
   
 ## Máquina Precious
 
