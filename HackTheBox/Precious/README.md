@@ -88,5 +88,18 @@ Haciendo sudo -l listamos lo que podemos ejecutar desde esta cuenta de usuario y
 
 ![](16.png)
 
+Para hacer esto decidí cambiar a una shell de bash y estabilizarla por comodidad 
+
+![](18.png)
+
+![](17.png)
+
+![](19.png)
+
+![](20.png)
+
+![](21.png)
+
+![](22.png)
 
 **Autor:** [AlbertoMiñan](https://github.com/albertominan)
