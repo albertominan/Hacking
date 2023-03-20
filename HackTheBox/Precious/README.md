@@ -88,17 +88,23 @@ Haciendo sudo -l listamos lo que podemos ejecutar desde esta cuenta de usuario y
 
 ![](16.png)
 
-Para hacer esto decidí cambiar a una shell de bash y estabilizarla por comodidad 
+Para hacer esto decidí cambiar a una shell de bash y estabilizarla por comodidad.
 
 ![](18.png)
+
+Cargamos con un echo "--- nuestra carga para modificar el archivo dependencies.yml.
 
 ![](17.png)
 
 ![](19.png)
 
+Comprobamos los cambios y utilizamos la función update_dependencies.rb para que lea nuestra carga y abrimos shell de ROOT.
+
 ![](20.png)
 
 ![](21.png)
+
+Pwned!
 
 ![](22.png)
 
