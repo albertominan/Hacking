@@ -83,7 +83,7 @@ Con msfdb y el exploit/multi/http/tomcat_mgr_upload podemos conseguir una shell 
 
 ### Capturando la flag
 
-Navegando entre directorios encontramos en el /home/Users/Administrator/Desktop/flags un archivo llamado 2 for the price of 1.txt.
+Navegando entre directorios encontramos en el \home\Users\Administrator\Desktop\flags un archivo llamado 2 for the price of 1.txt.
 
 ![](15.png)
 
