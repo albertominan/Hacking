@@ -81,6 +81,20 @@ Con msfdb y el exploit/multi/http/tomcat_mgr_upload podemos conseguir una shell 
 
 ![](13.png)
 
+### Reverse shell 2
+
+La otra forma de conseguir una reverse shell sería cargando un archivo .war malicioso previamente creado manualmente.
+
+![](war1.png)
+
+![](war2.png)
+
+![](war3.png)
+
+Este script nos creará una ruta en la aplicación que deberemos de pinchar para que nos dé la conexion de vuelta y así tener una shell en el sistema.
+
+![](war4.png)
+
 ### Capturando la flag
 
 Navegando entre directorios encontramos en el \home\Users\Administrator\Desktop\flags un archivo llamado 2 for the price of 1.txt.
