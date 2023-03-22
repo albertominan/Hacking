@@ -2,9 +2,9 @@
     
   
 
-  ![](portada.png)
+  ![](https://github.com/albertominan/Hacking/blob/f63690c6aef5ced0b87134b8e856197a3477d8aa/HackTheBox/Knife/Fotos/knife.png)
   
-## Máquina Precious
+## Máquina Knife
 
   
 
@@ -12,9 +12,9 @@
 
 ### Solución
     
-    USER FLAG: "james" >> /home/james/user.txt >> 112bb323ac23f4a06b02be2e6d4a05b3
+    USER FLAG: "james" >> /home/james/user.txt >> 
     
-    ROOT FLAG: "root" >> /root/root.txt >> 650c7efc2338f853a15e7755eada5817
+    ROOT FLAG: "root" >> /root/root.txt >> 
     
   
   
