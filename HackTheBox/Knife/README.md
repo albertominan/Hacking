@@ -4,6 +4,7 @@
 
   ![](https://github.com/albertominan/Hacking/blob/f63690c6aef5ced0b87134b8e856197a3477d8aa/HackTheBox/Knife/Fotos/knife.png)
   
+  
 ## Máquina Knife
 
   
@@ -12,92 +13,68 @@
 
 ### Solución
     
-    USER FLAG: "james" >> /home/james/user.txt >> 
+    USER FLAG: "james" >> /home/james/user.txt >> 0544c5446de79e55a9613f6146ad2fc2
     
-    ROOT FLAG: "root" >> /root/root.txt >> 
+    ROOT FLAG: "root" >> /root/root.txt >> 712a656036246259c140c222c4d41eef
     
   
   
 ### Escaneo nmap
 
-![](nmap.png)
+Descubrimos los puertos 22 ssh y 80 http abiertos.
 
-### Añadimos el dominio al etc/hosts
-
-![](redirect.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/nmap.png)
 
 ### Abrimos la página
 
-![](1.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/web.png)
 
-### Testeamos sus funciones con la url
+### Analizando
 
-![](2.png)
+La página carece de funciónes accesibles ni botones clickables pero buscando por la versión que nos dice wappalyzer encontramos esto.
 
-### Abriendo server en python
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/php.png)
 
-El server tiene un servicio que convierte páginas web en pdf, para ello necesitamos tener un servidor ejecutándose en nuestra máquina.
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/script.png)
 
-![](3.png)
+PHP versión 8.1.0-dev se lanzó con una puerta trasera el 28 de marzo de 2021, pero la puerta trasera se descubrió y eliminó rápidamente. 
+Si esta versión de PHP se ejecuta en un servidor, un atacante puede ejecutar código arbitrario enviando el encabezado User-Agentt. 
 
-### Descarga y análisis del pdf
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/script1.png)
 
-Analizando los metadatos vemos que el pdf fué creado con pdfkit v0.8.6 el cual tiene un CVE-2022-25765 el cual nos dice que una app podría ser vulnerable si intenta representar una URL que tiene parámetros de cadena de consulta con la entrada del usuario.
+### Probando script
 
+Conseguimos una shell y la estabilizamos para que nos sea mas cómoda y práctica.
 
-![](4.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/reverse-shell.png)
 
-![](5.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/estabilizacionshell.png)
 
-![](6.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/estabilizacionshell1.png)
 
-![](7.png)
+### User Flag
 
-### Reverse shell
+Navegamos hasta la carpeta /home/james/user.txt y sacamos la primera flag.
 
-Abriremos un oyente con netcat e introducimos nuestra reverse shell dentro de las comillas del código anterior, una vez hecho esto tendremos una shell.
-
-![](8.png)
-
-![](9.png)
-
-![](10ng)
-
-### Capturando la flag
-
-Navegando entre directorios encontramos en el /home/henry un archivo llamado user.txt el cual no nos dejará acceder con los permisos actuales, en el archivo .bundle encontramos una password del usuario henry y ya podemos leer nuestra flag
-
-![](11.png)
-
-![](12.png)
-
-![](13.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/userflag.png)
 
 ### Escalada de privilegios a ROOT
 
-Haciendo sudo -l listamos lo que podemos ejecutar desde esta cuenta de usuario y que descubrimos henry puede ejecutar como root el archivo /opt/update_dependecies.rb el cual tras un vistazo al código vemos que usa YAML.LOAD que es vulnerable al ataque de deserialización, para esto necesitamos crear una carga dentro de un archivo llamado dependencies.yml.
+Después de hacer reconocimiento con sudo -l vemos que nuestro usuario tiene un binario con permiso sudo llamado knife.
 
-![](14.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/sudo-l.png)
 
-![](15.png)
+Nos vamos en este caso a gtfoBINS y encontramos el binario knife y nos dice que si este tiene permisos de sudo nos permitirá escalar privilegios.
 
-![](16.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/gtfo.png)
 
-Para hacer esto decidí cambiar a una shell de bash y estabilizarla por comodidad.
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/gtfo1.png)
 
-![](18.png)
+Metemos el comando y nos dá una shell de ROOT
 
-Cargamos con un echo "--- nuestra carga para modificar el archivo dependencies.yml.
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/root.png)
 
-![](17.png)
-
-![](19.png)
-
-Comprobamos los cambios y utilizamos la función update_dependencies.rb para que lea nuestra carga y abrimos shell de ROOT.
-
-![](20.png)
-
-![](21.png)
+![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/rootflag.png)
 
 Pwned!
 
