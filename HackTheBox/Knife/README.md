@@ -76,11 +76,28 @@ Metemos el comando y nos dá una shell de ROOT
 
 ![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/rootflag.png)
 
-Pwned!
+### Pwned!
 
-![](22.png)
+![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/pwned1.png)
 
 
-![](pwned.png)
+### Alternativa reverse shell
+
+Existe otra manera de conseguir una shell en la máquina victima aprovechandose de la funcionalidad del backdoor instalado.
+
+![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/curl.png)
+
+Podemos introducir comandos mediante el header "User-agentt"
+
+![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/curl1.png)
+
+Para simplificar la salida le pasamos un pipe seguido de html2text
+
+![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/curl2.png)
+
+Mediante una reverse shell por comandos nos da el mismo resultado que con el script que vimos antes.
+
+![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/reverse-shell1.png)
+
 
 **Autor:** [AlbertoMiñan](https://github.com/albertominan)
