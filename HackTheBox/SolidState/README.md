@@ -72,7 +72,7 @@ Comprobamos la bandeja de correo del usuario James y vemos que está vacía.
 
 Comprobando todos los usuarios encontramos este email en la bandeja de John el cual el admin le pide que restrinja el acceso a mindy hasta que se registre en el programa.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EmailAdmin2john.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EmailAdmin2John.png)
 
 Nos vamos a la bandeja de Mindy y vemos 1 correo con la password temporal que le proporcionó john.
 
@@ -131,58 +131,46 @@ Comprobamos que el codename y distribución de linux coinciden con el launchpad 
 
 [](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/lsb_release.png)
 
-Buscamos privilegios SUID pero no vemos nada relevante a simple vista.
+Buscamos privilegios SUID para ver que archivos tienen propietario root para poder aprovecharnos de ellos pero no vemos nada relevante a simple vista.
 
 [](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosSUID.png)
+
+Listamos capabilities para buscar vias potenciales pero nada relevante.
+
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ListadoCapabilities.png)
 
 Creación de script que busca tareas de cron que se estén ejecutando.
 
 [](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder.png)
 
-Ahora podemos exportar nuestro PATH para que el script pueda acceder a mas binarios.
+Ahora podemos exportar nuestro PATH para acceder a mas rutas.
 
 [](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder1.png)
 
-### Escalada de privilegios a ROOT
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder2.png)
 
-Después de hacer reconocimiento con sudo -l vemos que nuestro usuario tiene un binario con permiso sudo llamado knife.
+Ejecutamos nuestro script y encontramos un .py.
 
-![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/sudo-l.png)
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ResultadoScript.png)
 
-Nos vamos en este caso a gtfoBINS y encontramos el binario knife y nos dice que si este tiene permisos de sudo nos permitirá escalar privilegios.
+listamos los permisos de este tmp.py.
 
-![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/gtfo.png)
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosScriptTMP.png)
 
-![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/gtfo1.png)
+Entramos para ver el script y vemos que lo podemos modificar a nuestro favor para cambiar los permisos de nuestra bash.
 
-Metemos el comando y nos dá una shell de ROOT
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPModificacion.png)
 
-![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/root.png)
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPFinal.png)
 
-![](https://github.com/albertominan/Hacking/blob/50af74c925922445de40a7ba068491470ae57ee5/HackTheBox/Knife/Fotos/rootflag.png)
+### ROOT
 
-### Pwned!
+Con el comando watch estamos ejecutando el comando dado cada segundo para ver los cambios en vivo, nuestra bash pasará a tener el permiso s.
 
-![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/pwned1.png)
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Root.png)
 
 
-### Alternativa reverse shell
-
-Existe otra manera de conseguir una shell en la máquina victima aprovechandose de la funcionalidad del backdoor instalado.
-
-![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/curl.png)
-
-Podemos introducir comandos mediante el header "User-agentt"
-
-![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/curl1.png)
-
-Para simplificar la salida le pasamos un pipe seguido de html2text
-
-![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/curl2.png)
-
-Mediante una reverse shell por comandos nos da el mismo resultado que con el script que vimos antes.
-
-![](https://github.com/albertominan/Hacking/blob/3db87a840a24e1a3cb94fabc985f04a246d37b69/HackTheBox/Knife/Fotos/reverse-shell1.png)
+[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Pwned.png)
 
 
 **Autor:** [AlbertoMiñan](https://github.com/albertominan)
