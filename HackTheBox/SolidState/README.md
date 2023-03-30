@@ -99,78 +99,78 @@ Como estamos dentro del contexto de sshpass nos dá conflicto para estabilizar l
 
 ![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell1.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell1.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell2.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell2.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell3.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell3.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell4.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell4.png)
 
 A pesar de tener una bash estabilizada las proporciones aún no son las correctas, vamos a tratar de ponerlas igual que una terminal propia de nuestra máquina.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL.png)
+![](https://github.com/albertominan/Hacking/blob/3781f82847bb9340d3b840bc7bacfcf73102bba7/HackTheBox/SolidState/Capturas/ProporcionesSHELL.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL1.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL1.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL2.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL2.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL3.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL3.png)
 
 ### Escalada de privilegios
 
 Identificamos el kernel.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/uname-a.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/uname-a.png)
 
 Checkeamos a ver si hay contenedores.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ComprobandoContenedores.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ComprobandoContenedores.png)
 
 Comprobamos que el codename y distribución de linux coinciden con el launchpad que vimos antes.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/lsb_release.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/lsb_release.png)
 
 Buscamos privilegios SUID para ver que archivos tienen propietario root para poder aprovecharnos de ellos pero no vemos nada relevante a simple vista.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosSUID.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosSUID.png)
 
 Listamos capabilities para buscar vias potenciales pero nada relevante.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ListadoCapabilities.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ListadoCapabilities.png)
 
 Creación de script que busca tareas de cron que se estén ejecutando.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder.png)
 
 Ahora podemos exportar nuestro PATH para acceder a mas rutas.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder1.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder1.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder2.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder2.png)
 
 Ejecutamos nuestro script y encontramos un .py.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ResultadoScript.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ResultadoScript.png)
 
 listamos los permisos de este tmp.py.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosScriptTMP.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosScriptTMP.png)
 
 Entramos para ver el script y vemos que lo podemos modificar a nuestro favor para cambiar los permisos de nuestra bash.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPModificacion.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPModificacion.png)
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPFinal.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPFinal.png)
 
 ### ROOT
 
 Con el comando watch estamos ejecutando el comando dado cada segundo para ver los cambios en vivo, nuestra bash pasará a tener el permiso s.
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Root.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Root.png)
 
 
-[](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Pwned.png)
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Pwned.png)
 
 
 **Autor:** [AlbertoMiñan](https://github.com/albertominan)
