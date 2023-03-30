@@ -169,6 +169,7 @@ Con el comando watch estamos ejecutando el comando dado cada segundo para ver lo
 
 ![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Root.png)
 
+![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/giphy.webp)
 
 ![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Pwned.png)
 
