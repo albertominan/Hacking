@@ -30,5 +30,5 @@ En este punto nuestra SHELL es funcional pero necesitamos no tener problemas de 
 
 Ya solo nos queda este último y tenemos una SHELL 100% operativa y funcional.
 
-``stty rows 53 columns 115
+``stty rows 53 columns 115``
 
