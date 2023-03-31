@@ -2,7 +2,7 @@
     
   
 
-  ![](https://github.com/albertominan/Hacking/blob/ae7ed668126890fe4058de412d714b248012c4fd/HackTheBox/SolidState/Capturas/SolidState.png)
+  ![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/LAME.png)
   
   
 ## Máquina Lame
@@ -23,33 +23,49 @@
   
 ### Enumeración
 
-Descubrimos los puertos 22 ssh, 25 smtp, 80 http, 110 pop3, 119 nntp, y 4555 rsip abiertos.
+Hacemos un ping para saber a que máquina nos enfrentamos a través del TTL 64 linux 128 windows.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EscaneoInicial.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/ttllinux.png)
+
+Descubrimos los puertos 21, 22, 139, 445 y 3632 abiertos.
+
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Ports.png)
 
 Hacemos otro escaneo mas especifico para los puertos encontrados.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EscaneoTargets.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Targets.png)
 
-### Port 80
+### Port 21
 
-Entramos en una página la cual no presenta a primera vista nada relevante asi que tratamos de recopilar información de ella, comprobamos con whatweb que es como wappalyzer pero por terminal.
+Nos conectamos como usuario anonimo ya que vemos previamente que se encuentra habilitado, listamos y probamos comandos.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/WhatWeb.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/FTPAnonymousLogin.png)
 
-Tiramos también de launchpad para identificar contra que nos estamos enfrentando y sacar el codename de la máquina.
+Buscamos algún exploit para la versión que encontramos.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Launchpad.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SearchSploitVSFTPD.png)
 
-### Port 4555
+Nos lo copiamos, cambiamos el nombre y analizamos su contenido.
 
-Nos conectamos con netcat a lo que parece una herramienta de administracion de correo la cual nos pide usuario y contraseña.
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SearchSploitVSFTPD1.png)
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Nc4555login.png)
+Vemos que el exploit utiliza una vulnerabilidad a la hora de hacer login cuando introducimos con el nombre de usuario la carita feliz :) y a su vez nos abre una shell.
 
-Tras unas pruebas de contraseñas comunes busco credenciales por defecto...
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SearchSploitVSFTPD2.png)
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/DefaultPasswords4555.png)
+Hacemos un intento de login tal como dice el escript pero sin exito porque el puerto 6200 está cerrado.
+
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/IntentoLoginNcTelnet.png)
+
+### Port 445
+
+Identificamos una versión de Samba.
+
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SambaEnumeration.png)
+
+Buscamos un exploit.
+
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SambaEnumeration1.png)
 
 Estamos dentro y listamos los comandos que podemos ejecutar.
 
@@ -168,11 +184,11 @@ Entramos para ver el script y vemos que lo podemos modificar a nuestro favor par
 
 Con el comando watch estamos ejecutando el comando dado cada segundo para ver los cambios en vivo, nuestra bash pasará a tener el permiso s.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Root.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Flags.png)
 
 ![](https://github.com/albertominan/Hacking/blob/7736054cfb555db9ecebccf26d586859c05139e9/HackTheBox/SolidState/Capturas/giphy.webp)
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/Pwned.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/LAME.png)
 
 
 **Autor:** [AlbertoMiñan](https://github.com/albertominan)
