@@ -69,15 +69,15 @@ Buscamos un exploit.
 
 Encontramos 1 relevante y analizamos su contenido.
 
-![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Script.png)
+![](https://github.com/albertominan/Hacking/blob/a9c9b05108c696cfd85aeb921a19e2e7d39e471c/HackTheBox/Lame/Capturas/Script.png)
 
 Este script emplea una conexion al puerto 445 y se autentica como usuario con el payload entre comillas, el nohup se usa también cuando ejecutamos un comando en una reverse shell y nos mata la sesión.
 
-![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Script1.png)
+![](https://github.com/albertominan/Hacking/blob/a9c9b05108c696cfd85aeb921a19e2e7d39e471c/HackTheBox/Lame/Capturas/Script1.png)
 
 Antes de nada listaremos los recursos compartidos que existen a nivel de red empleando un NULL session.
 
-![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SMBclient.png)
+![](https://github.com/albertominan/Hacking/blob/a9c9b05108c696cfd85aeb921a19e2e7d39e471c/HackTheBox/Lame/Capturas/SMBclient.png)
 
 Accedemos al directorio /tmp listando los comandos posibles y con logon vamos a usar la función de nohup para mandar un ping a nuestra máquina poniendonos a la escucha con tcpdump y si recibimos el paquete de vuelta quiere decir que podemos inyectar comandos.
 
@@ -94,6 +94,8 @@ Probamos a meterle un whoami y que nos lo devuelva con nc a nuestra maquina por 
 Recibimos de nuevo la conexión y tenemos una shell de root directamente.
 
 ![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Reverse.png)
+
+### ROOT
 
 Tras estabilizar nuestra shell nos ponemos con la busqueda de las flags.
 
