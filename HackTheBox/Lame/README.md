@@ -67,128 +67,41 @@ Buscamos un exploit.
 
 ![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SambaEnumeration1.png)
 
-Estamos dentro y listamos los comandos que podemos ejecutar.
+Encontramos 1 relevante y analizamos su contenido.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/NcRoot.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Script.png)
 
-Tras listar usuarios disponibles y no tener ninguna credencial conocida aún, la forma más facil como somos root es resetear las contraseñas de todos los usuarios para poder entrar en su sesión después sin ninguna complicación.  
+Este script emplea una conexion al puerto 445 y se autentica como usuario con el payload entre comillas, el nohup se usa también cuando ejecutamos un comando en una reverse shell y nos mata la sesión.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/NcPasswordReset.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Script1.png)
 
-En este punto sabemos que estamos ante un servicio de correo.
+Antes de nada listaremos los recursos compartidos que existen a nivel de red empleando un NULL session.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ServicioCorreo.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/SMBclient.png)
 
-Nos conectamos con nc por primera vez al puerto 110 pero es mejor hacerlo con telnet ya que da menos problemas.
+Accedemos al directorio /tmp listando los comandos posibles y con logon vamos a usar la función de nohup para mandar un ping a nuestra máquina poniendonos a la escucha con tcpdump y si recibimos el paquete de vuelta quiere decir que podemos inyectar comandos.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/UserJames110.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/ReverseShell.png)
 
-Comprobamos la bandeja de correo del usuario James y vemos que está vacía.
+Recibimos la conexión desde la IP de la máquina víctima.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/CorreoJamesVacio.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/PingTCPDUMP.png)
 
-Comprobando todos los usuarios encontramos este email en la bandeja de John el cual el admin le pide que restrinja el acceso a mindy hasta que se registre en el programa.
+Probamos a meterle un whoami y que nos lo devuelva con nc a nuestra maquina por el puerto 443.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EmailAdmin2John.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/InyeccionComandos.png)
 
-Nos vamos a la bandeja de Mindy y vemos 1 correo con la password temporal que le proporcionó john.
+Recibimos de nuevo la conexión y tenemos una shell de root directamente.
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EmailMindy1.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Reverse.png)
 
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EmailMindy2.png)
-
-
-### Port 22
-
-Algo me dice que mindy no ha cambiado la contraseña que le dieron y efectivamente, al momento nos damos cuenta de que estamos dentro de una restricted bash la cual nos permite solo utilizar algunos pocos comandos.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/SSHLoginRbashwhoami.png)
-
-los comandos que nos permite son los alojados en el directorio que nos indica el PATH.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/RbashCommands.png)
-
-Intenté exportar mi PATH a mindy pero no deja asi qué probamos a meterle con sshpass un comando que si la rbash está mal configurada, este se ejecutará antes de que salga la bash.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/BashShell.png)
-
-Como estamos dentro del contexto de sshpass nos dá conflicto para estabilizar la shell así que entramos por ssh normal. 
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell1.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell2.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell3.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/EstabilizandoShell4.png)
-
-A pesar de tener una bash estabilizada las proporciones aún no son las correctas, vamos a tratar de ponerlas igual que una terminal propia de nuestra máquina.
-
-![](https://github.com/albertominan/Hacking/blob/3781f82847bb9340d3b840bc7bacfcf73102bba7/HackTheBox/SolidState/Capturas/ProporcionesSHELL.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL1.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL2.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ProporcionesSHELL3.png)
-
-### Escalada de privilegios
-
-Identificamos el kernel.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/uname-a.png)
-
-Checkeamos a ver si hay contenedores.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ComprobandoContenedores.png)
-
-Comprobamos que el codename y distribución de linux coinciden con el launchpad que vimos antes.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/lsb_release.png)
-
-Buscamos privilegios SUID para ver que archivos tienen propietario root para poder aprovecharnos de ellos pero no vemos nada relevante a simple vista.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosSUID.png)
-
-Listamos capabilities para buscar vias potenciales pero nada relevante.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ListadoCapabilities.png)
-
-Creación de script que busca tareas de cron que se estén ejecutando.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder.png)
-
-Ahora podemos exportar nuestro PATH para acceder a mas rutas.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder1.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptCronfinder2.png)
-
-Ejecutamos nuestro script y encontramos un .py.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ResultadoScript.png)
-
-listamos los permisos de este tmp.py.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/PrivilegiosScriptTMP.png)
-
-Entramos para ver el script y vemos que lo podemos modificar a nuestro favor para cambiar los permisos de nuestra bash.
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPModificacion.png)
-
-![](https://github.com/albertominan/Hacking/blob/55c54df668c89914067c4d2c996a592be8039f68/HackTheBox/SolidState/Capturas/ScriptTMPFinal.png)
-
-### ROOT
-
-Con el comando watch estamos ejecutando el comando dado cada segundo para ver los cambios en vivo, nuestra bash pasará a tener el permiso s.
+Tras estabilizar nuestra shell nos ponemos con la busqueda de las flags.
 
 ![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/Flags.png)
 
 ![](https://github.com/albertominan/Hacking/blob/7736054cfb555db9ecebccf26d586859c05139e9/HackTheBox/SolidState/Capturas/giphy.webp)
 
-![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/LAME.png)
+![](https://github.com/albertominan/Hacking/blob/cc70219fba98c2fcfe6b18c1ae203d71bb1723ca/HackTheBox/Lame/Capturas/pwned.png)
 
 
 **Autor:** [AlbertoMiñan](https://github.com/albertominan)
