@@ -1,3 +1,5 @@
+#Permite monitorizar procesos que estén activos con el comando "ps -eo command".  
+
 #!/bin/bash
 
 function ctrl_c(){
