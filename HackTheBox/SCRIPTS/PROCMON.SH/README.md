@@ -1,5 +1,3 @@
-#Permite monitorizar procesos que estén activos con el comando "ps -eo command".  
-
 #!/bin/bash
 
 function ctrl_c(){
@@ -7,7 +5,7 @@ function ctrl_c(){
 	tput cnorm; exit 1
 }
 
-# Ctrl+C 
+#Ctrl+C 
 trap ctrl_c INT
 
 tput civis
