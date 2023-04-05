@@ -1,3 +1,6 @@
+## Script monitor de procesos
+
+
 #!/bin/bash
 
 function ctrl_c(){
