@@ -1,5 +1,3 @@
-## Script monitor de procesos
-
 
 #!/bin/bash
 
@@ -8,7 +6,7 @@ function ctrl_c(){
 	tput cnorm; exit 1
 }
 
-# Ctrl+C 
+#Ctrl+C 
 trap ctrl_c INT
 
 tput civis
