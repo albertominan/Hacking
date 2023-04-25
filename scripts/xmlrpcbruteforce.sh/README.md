@@ -9,6 +9,12 @@ En caso de que las credenciales no sean correctas, el servidor responderá con u
 De esta forma, podremos utilizar la respuesta del servidor para determinar cuándo hemos encontrado credenciales válidas y, de esta forma, tener acceso al sitio web de WordPress comprometido.
 
 
+**El script es equivalente al siguiente comando de wpsscan para fuerza bruta:**
+
+``wpsscan --url https://ejemplo.com:80 -U usuario -P /usr/share/wordlists/rockyou.txt``
+
+
+
 
 	#!/bin/bash
 
