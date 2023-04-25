@@ -11,7 +11,7 @@ De esta forma, podremos utilizar la respuesta del servidor para determinar cuán
 
 **El script es equivalente al siguiente comando de wpsscan para fuerza bruta:**
 
-``wpsscan --url https://ejemplo.com:80 -U usuario -P /usr/share/wordlists/rockyou.txt``
+``wpscan --url https://ejemplo.com:80 -U usuario -P /usr/share/wordlists/rockyou.txt``
 
 
 
