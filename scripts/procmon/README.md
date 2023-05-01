@@ -1,3 +1,4 @@
+```bash
 #!/bin/bash
 
 function ctrl_c(){
@@ -17,3 +18,4 @@ while true; do
 	diff <(echo "$old_process") <(echo "$new_process") | grep "[\>\<]" | grep -vE "command|procmon|kworker"
 	old_process=$new_process
 done
+```
