@@ -1,6 +1,6 @@
 //Este script ejecuta una ventana emergente requiriendo email y contraseña
 
-```html
+```js
 <script>
 var email;
 var password;
