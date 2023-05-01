@@ -1,3 +1,5 @@
+//Este script hace una secuencia de números del 1 al 100 ordenados
+
 ```bash
 #!/bin/bash
 
