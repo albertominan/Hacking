@@ -15,7 +15,7 @@ De esta forma, podremos utilizar la respuesta del servidor para determinar cuán
 
 
 
-
+```bash
 	#!/bin/bash
 
 	function ctrl_c(){ 
@@ -55,3 +55,4 @@ De esta forma, podremos utilizar la respuesta del servidor para determinar cuán
 	cat /usr/share/wordlists/rockyou.txt | while read password; do      <-- *Cambiaremos la ruta en caso de querer usar otro diccionario*
         createXML $password
 	done
+```
