@@ -1,3 +1,5 @@
+//Este script descomprime un archivo en su totalidad en caso de contener multiples archivos 1 dentro de otro
+
 ```bash
 #!/bin/bash
 
