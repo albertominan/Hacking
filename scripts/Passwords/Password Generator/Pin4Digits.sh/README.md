@@ -1,5 +1,14 @@
 //Este script genera un diccionario de contraseñas de 4 digitos desde el 0000 hasta el 9999 sin orden numérico
 
+## Básico
+
+```bash
+for pin in {0000..9999}; do echo "Contraseña $pin"; done > combinations.txt
+```
+-------------------------------------------------------------------------------------------------------------------
+
+## Con correccíon de errores y adjunto a un archivo
+
 ```bash
 #!/bin/bash
 
